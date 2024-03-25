@@ -17,6 +17,10 @@
 
 * [Maguire Richard](Maguire@dal.ca)
 
+## NOTE
+
+/dashboard does not work on netlify, but works in any local build, you can see in the index.js file that I have set up routing so it should work in theory, and it did during all my local testing.
+
 
 ## Sources Used
 
