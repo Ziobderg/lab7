@@ -19,8 +19,7 @@
 
 
 ## Sources Used
-npm install react-router-dom
-https://react.dev/reference/react-dom/components/input
+
 ### UserForm.js
 
 *Lines 27-77*
@@ -134,5 +133,5 @@ function validate() {
 ```
 
 - <!---How---> The code in [Lecture 9 Activity](https://dal.brightspace.com/d2l/le/content/308886/viewContent/4166257/View) was implemented by copying the form and validation code into its own component.
-- <!---Why---> [StackOverflow - Joseph D.](https://stackoverflow.com/a/57782009)'s Code was used to save time creating the entire form and validation code/regex from scratch.
-- <!---How---> [StackOverflow - Joseph D.](https://stackoverflow.com/a/57782009)'s Function was modified significantly to include state variables, validate in realtime, change how validation worked to return true or false, and the season dropdown was added.
+- <!---Why---> [Lecture 9 Activity](https://dal.brightspace.com/d2l/le/content/308886/viewContent/4166257/View)'s Code was used to save time creating the entire form and validation code/regex from scratch.
+- <!---How---> [Lecture 9 Activity](https://dal.brightspace.com/d2l/le/content/308886/viewContent/4166257/View)'s Function was modified significantly to include state variables, validate in realtime, change how validation worked to return true or false, and the season dropdown was added.
