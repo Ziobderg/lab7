@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import Profile from './Profile.js';
+import UserForm from './UserForm.js';
 
-function App() {
+
+export default function App() {
+
+  const [formData, setFormData] = useState(null);
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  function formSubmit(isValid, data){
+    
+    if(isValid){
+      console.log("gh");
+      setFormData(data);
+      setIsFormValid(true);
+    }
+    
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Lab 7 - Maguire Richard</p>
+        <div className="content">
+          {isFormValid ? <Profile formData={formData}/> : <UserForm doSubmit={formSubmit}/>}
+        </div>
       </header>
     </div>
+    
   );
 }
-
-export default App;

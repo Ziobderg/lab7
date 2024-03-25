@@ -1,70 +1,138 @@
-# Getting Started with Create React App
+<!--- The following README.md sample file was adapted from https://gist.github.com/PurpleBooth/109311bb0361f32d87a2#file-readme-template-md by Gabriella Mosquera for academic use ---> 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+# Lab 7
 
-### `npm start`
+**[Optional]** If what is being submitted is an individual Lab or Assignment. Otherwise, include a brief one paragraph description about the project.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* *Date Created*: 12 March 2024
+* *Last Modification Date*: 25 March 2024
+* *Lab URL*: <https://maguirelab6.netlify.app>
+* *Git URL*: <https://git.cs.dal.ca/maguirer/csci3172-web-centric/-/tree/main/labs/lab7?ref_type=heads>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Authors
 
-### `npm run build`
+* [Maguire Richard](Maguire@dal.ca)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Sources Used
+npm install react-router-dom
+https://react.dev/reference/react-dom/components/input
+### UserForm.js
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*Lines 27-77*
 
-### `npm run eject`
+```
+  function validate() {
+  
+    if(firstNameRegEx.test(formData['firstName']) &&
+      lastNameRegEx.test(formData['lastName']) &&
+      emailRegEx.test(formData['email']) &&
+      passwordRegEx.test(formData['password'])) {
+        return true;
+    } else {
+        return false;
+    }
+  }
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  return (
+    // Form taken and modified from L8 activity
+    <form className="registration" id="register" onSubmit={handleSubmit}>
+      <h3>Registration Form</h3>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+      <label htmlFor="firstName">First Name: </label>
+      <input type="text" name="firstName" id="firstName" tabIndex="1" value={formData['firstName']} onChange={e => setFormData(prevState => ({...prevState, ['firstName']: e.target.value}))}/>
+      <span className="format">* Letters only (non-case-sensitive)</span>
+      <div className='invalid'>{formData['firstName'] !== '' && !firstNameRegEx.test(formData['firstName']) && 'Invalid First Name'}</div>
+      
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+      <label htmlFor="lastName">Last Name: </label>
+      <input type="text" name="lastName" id="lastName" tabIndex="2" value={formData['lastName']} onChange={e => setFormData(prevState => ({...prevState, ['lastName']: e.target.value}))}/>
+      <span className="format">* Letters only (non-case-sensitive), can include - or '</span>
+      <div className='invalid'>{formData['lastName'] !== '' && !lastNameRegEx.test(formData['lastName']) && 'Invalid last Name'}</div>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+      <label htmlFor="email">Email: </label>
+      <input type="email" name="email" id="email" tabIndex="3" value={formData['email']} onChange={e => setFormData(prevState => ({...prevState, ['email']: e.target.value}))}/>
+      <span className="format">* Must follow the traditional email format</span>
+      <div className='invalid'>{formData['email'] !== '' && !emailRegEx.test(formData['email']) && 'Invalid Email'}</div>
 
-## Learn More
+      <label htmlFor="password">Password: </label>
+      <input type="password" name="password" id="password" tabIndex="4" value={formData['password']} onChange={e => setFormData(prevState => ({...prevState, ['password']: e.target.value}))}/>
+      <span className="format">* At least 8 characters, include at least one number, one uppercase letter, one lowercase letter, and one special character.</span>
+      <div className='invalid'>{formData['password'] !== '' && !passwordRegEx.test(formData['password']) && 'Invalid Password'}</div>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+      <div className="selectDiv" id="selectDiv">
+          <label htmlFor="seasons">Favorite Season: </label>
+          <select htmlFor="seasons" id="seasons" value={formData['season']} onChange={e => setFormData(prevState => ({...prevState, ['season']: e.target.value}))}>
+              <option value="spring">Spring</option>
+              <option value="fall">Fall</option>
+              <option value="summer">Summer</option>
+              <option value="winter">Winter</option>
+          </select>
+      </div>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+      <button type="submit" tabIndex="5">Submit</button>
+    </form>
+  );
+```
 
-### Code Splitting
+The code above was created by adapting the code in [Lecture 9 Activity](https://dal.brightspace.com/d2l/le/content/308886/viewContent/4166257/View) as shown below: 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+<form class="registration" id="register" onsubmit="validate()">
+  <h3>Registration Form</h3>
+  <label for="firstName">First Name</label>
+  <span class="format">* Letters only (non-case-sensitive)</span>
+  <br>
+  <input type="text" name="firstName" id="firstName" tabindex="1">
+  <br>
+  <label for="lastName">Last Name</label>
+  <span class="format">* Letters only (non-case-sensitive)</span>
+  <br>
+  <input type="text" name="lastName" id="lastName" tabindex="2">
+  <br>
+  <label for="email">Email</label>
+  <span class="format">* Must follow the traditional email format</span>
+  <br>
+  <input type="email" name="email" id="email" tabindex="3">
+  <br>
+  <label for="password">Password</label>
+  <span class="format">* At least 8 characters, include at least one number, one uppercase letter, one lowercase letter, and one special character.</span>
+  <br>
+  <input type="password" name="password" id="password" tabindex="4">
+  <br>
+  <button type="submit" tabindex="5">Submit</button>
+</form>
 
-### Analyzing the Bundle Size
+function validate() {
+    let firstNameRegEx = /^[a-zA-Z]+\s*[a-zA-Z]*$/;
+    let lastNameRegEx = /^[a-zA-Z]+['-]*[a-zA-Z]*$/;
+    let emailRegEx = /^[a-zA-Z0-9.-]+@[a-zA-Z.-]+\.[a-zA-Z]{2,6}$/;
+    //https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
+    let passwordRegEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_#])[A-Za-z\d@$!%*?&_#]{8,}$/;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    let firstNameValue = document.getElementById('firstName').value;
+    let lastNameValue = document.getElementById('lastName').value;
+    let emailValue = document.getElementById('email').value;
+    let passwordValue = document.getElementById('password').value;
 
-### Making a Progressive Web App
+    if(!firstNameRegEx.test(firstNameValue)) {
+        alert("First name must only use letters");
+    } else if (!lastNameRegEx.test(lastNameValue)) {
+        alert("Last name must only be letters, and may contain a - or '")
+    } else if (!emailRegEx.test(emailValue)) {
+        alert("Email must be of the form abc@abc.abc, and the domain must be between 2 and 6 characters (inclusive)")
+    } else if (!passwordRegEx.test(passwordValue)) {
+        alert("Password must be at least 8 characters, and contain a lowercase letter, uppercase letter, number, and special character")
+    } else {
+        alert('Thank you for completing our form successfully!');
+    }
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- <!---How---> The code in [Lecture 9 Activity](https://dal.brightspace.com/d2l/le/content/308886/viewContent/4166257/View) was implemented by copying the form and validation code into its own component.
+- <!---Why---> [StackOverflow - Joseph D.](https://stackoverflow.com/a/57782009)'s Code was used to save time creating the entire form and validation code/regex from scratch.
+- <!---How---> [StackOverflow - Joseph D.](https://stackoverflow.com/a/57782009)'s Function was modified significantly to include state variables, validate in realtime, change how validation worked to return true or false, and the season dropdown was added.
