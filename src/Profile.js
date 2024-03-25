@@ -10,7 +10,7 @@ function Profile(props) {
       <p>Email: {props.formData.email}</p>
       <p>Favorite Season: {props.formData.season}</p>
 
-      <a href='./Dashboard'>Go to Dashboard</a>
+      <a href='./dashboard'>Go to Dashboard</a>
     </div>
   );
 }
